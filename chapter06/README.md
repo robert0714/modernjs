@@ -16,6 +16,10 @@ these methods are moved into a new package called 'customize-cra' , which depend
 make sure u installed 'customize-cra' and `react-app-rewired@2.x`
 make sure u installed 'less' and 'less-loader'
 
+```bash
+yarn add customize-cra  less  less-loader babel-plugin-import --dev
+```
+
 and then here is the `config-overrides.js`
 
 ```javascript
