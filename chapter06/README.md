@@ -3,6 +3,51 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Reinstalling your tools
+but `injectBabelPlugin ` cannot work.
+
+issue 
+https://github.com/timarney/react-app-rewired/issues/348
+### WHY IT HAPPENED ?
+the new version of `react-app-rewired` removed all the methods like `injectBabelPlugin` .
+these methods are moved into a new package called 'customize-cra' , which depends on `react-app-rewired@2.x` .
+
+### what should i do in and-design ?
+make sure u installed 'customize-cra' and `react-app-rewired@2.x`
+make sure u installed 'less' and 'less-loader'
+
+```bash
+yarn add customize-cra  less  less-loader babel-plugin-import --dev
+```
+
+and then here is the `config-overrides.js`
+
+```javascript
+const {
+  override,
+  fixBabelImports,
+  addLessLoader,
+} = require("customize-cra");
+
+
+module.exports = override(
+  fixBabelImports("import", {
+    libraryName: "antd", libraryDirectory: "es", style: true // change importing css to less
+  }),
+  addLessLoader({
+    javascriptEnabled: true,
+    modifyVars: { "@primary-color": "#1DA57A" }
+  })
+);
+```
+reference
+
+https://daveceddia.com/hot-reloading-create-react-app/
+
+https://ithelp.ithome.com.tw/articles/10197802
+
+
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
